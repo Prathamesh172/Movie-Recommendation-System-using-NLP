@@ -6,16 +6,17 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-
+import os
 
 nltk.data.path.append('./nltk_data')
 nltk.download('punkt')
 nltk.download('stopwords')
-
+nltk.data.path.append(os.path.join(os.path.dirname(__file__), 'nltk_data'))
 app = Flask(__name__)
 
 # Load dataset
-df = pd.read_csv("Dataset/imdb_top_1000.csv")
+dataset_path = os.path.join(os.path.dirname(__file__), 'Dataset', 'imdb_top_1000.csv')
+df = pd.read_csv(dataset_path)
 
 # Combine actor columns
 df['actors'] = df[['Star1', 'Star2', 'Star3', 'Star4']].apply(lambda x: ', '.join(x.dropna()), axis=1)
@@ -73,4 +74,5 @@ def home():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 10000))
+    app.run(host='0.0.0.0', port=port)

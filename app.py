@@ -10,6 +10,7 @@ import os
 
 nltk.data.path.append('./nltk_data')
 nltk.download('punkt')
+nltk.download('punkt_tab')
 nltk.download('stopwords')
 nltk.data.path.append(os.path.join(os.path.dirname(__file__), 'nltk_data'))
 app = Flask(__name__)

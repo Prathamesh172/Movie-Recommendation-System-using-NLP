@@ -11,4 +11,4 @@ tensorflow
 flask
 huggingface_hub
 gunicorn
-
+nltk

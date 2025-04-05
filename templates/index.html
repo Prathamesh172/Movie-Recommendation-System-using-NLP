@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation System</title>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        body {
+              background: url("{{ url_for('static', filename='images/background.png') }}") no-repeat center center fixed;
+              background-size: cover;
+              color: white;
+              font-family: Arial, sans-serif;
+              text-align: center;
+              margin: 0;
+              padding: 0;
+        }
+
+
+        h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .typing-text::after {
+            content: '|';
+            display: inline-block;
+            animation: blink 0.8s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .container {
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            display: inline-block;
+            animation: fadeIn 1.2s ease-in-out;
+        }
+
+        input {
+            width: 300px;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            text-align: center;
+            font-size: 1em;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        input:focus {
+            box-shadow: 0px 0px 10px #ff5733;
+        }
+
+        button {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background: #fffc33;
+            color: rgb(15, 15, 15);
+            cursor: pointer;
+            transition: background 0.3s ease-in-out, transform 0.2s;
+            font-size: 1em;
+        }
+
+        button:hover {
+            background: #ff471a;
+            transform: scale(1.05);
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+
+        .suggestions {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #bbb;
+        }
+
+        .trending {
+            margin-top: 40px;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .poster-grid {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .poster {
+            width: 80px;
+            height: 120px;
+            border-radius: 8px;
+            background-size: cover;
+            background-position: center;
+            animation: floatUp 3s infinite ease-in-out;
+        }
+
+        .poster:nth-child(even) {
+            animation-delay: 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="typing-text">Find Your Next Favorite Movie...</h1>
+    
+    <div class="container">
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        <form method="POST">
+            <input type="text" id="movieInput" name="title" placeholder="Enter movie title" required autocomplete="off">
+            <button type="submit">Get Recommendations</button>
+        </form>
+        <div class="suggestions" id="suggestions"></div>
+    </div>
+
+    <script>
+        const textElement = document.querySelector(".typing-text");
+        const words = ["Find Your Next Favorite Movie...", "Discover Hidden Gems!", "Get Personalized Movie Picks!"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let currentText = "";
+        let isDeleting = false;
+
+        function typeEffect() {
+            if (!isDeleting && charIndex < words[wordIndex].length) {
+                currentText += words[wordIndex][charIndex];
+                charIndex++;
+            } else if (isDeleting && charIndex > 0) {
+                currentText = currentText.slice(0, -1);
+                charIndex--;
+            } else {
+                isDeleting = !isDeleting;
+                if (!isDeleting) {
+                    wordIndex = (wordIndex + 1) % words.length;
+                }
+            }
+            textElement.textContent = currentText;
+            setTimeout(typeEffect, isDeleting ? 100 : 150);
+        }
+
+        typeEffect();
+
+        // Movie suggestions
+        const movieInput = document.getElementById("movieInput");
+        const suggestionsDiv = document.getElementById("suggestions");
+        const movieList = ["Inception", "The Dark Knight", "Interstellar", "Parasite", "Avengers: Endgame", "Pulp Fiction"];
+
+        movieInput.addEventListener("input", function() {
+            const value = movieInput.value.toLowerCase();
+            suggestionsDiv.innerHTML = "";
+            if (value) {
+                const matches = movieList.filter(movie => movie.toLowerCase().includes(value));
+                matches.forEach(movie => {
+                    const div = document.createElement("div");
+                    div.textContent = movie;
+                    div.style.cursor = "pointer";
+                    div.addEventListener("click", () => {
+                        movieInput.value = movie;
+                        suggestionsDiv.innerHTML = "";
+                    });
+                    suggestionsDiv.appendChild(div);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

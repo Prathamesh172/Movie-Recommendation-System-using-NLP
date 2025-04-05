@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1 class="fade-in">Recommendations for "{{ movie }}"</h1>
+    <div class="container">
+        {% for rec in recommendations %}
+            <div class="movie-card">
+                <h2>{{ rec.Series_Title }}</h2>
+                <img src="{{ rec.Poster_Link }}" alt="Movie Poster">
+                <p><strong>Certificate:</strong> {{ rec.Certificate }}</p>
+                <p><strong>IMDB Rating:</strong> {{ rec.IMDB_Rating }}</p>
+                <p><strong>Meta Score:</strong> {{ rec.Meta_score }}</p>
+                <p><strong>Runtime:</strong> {{ rec.Runtime }}</p>
+                <p><strong>Genre:</strong> {{ rec.Genre }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    <a class="back-link" href="/">Search again</a>
+</body>
+</html>

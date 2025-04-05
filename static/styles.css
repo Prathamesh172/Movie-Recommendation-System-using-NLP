@@ -1,0 +1,135 @@
+body {
+    background: #1e1e1e;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.wrapper {
+    margin-top: 50px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.movie-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Centers everything inside */
+    justify-content: center;
+    text-align: center;
+    width: 250px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    margin: 20px auto;  /* Centers the entire card */
+    border-radius: 10px;
+}
+
+
+.movie-card img {
+    display: block;
+    margin: 0 auto;  /* Ensures image is centered */
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    image-rendering: crisp-edges;
+    border-radius: 10px;
+}
+
+.movie-card p {
+    flex-grow: 1;
+    text-align: center;
+}
+
+h2 {
+    min-height: 50px; /* Ensures titles don't affect box size */
+    text-align: center;
+}
+
+
+input {
+    width: 300px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+button {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background: #ff5733;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ff471a;
+    transform: scale(1.1);
+}
+
+.error {
+    color: red;
+}
+
+/* Results Page */
+.movie-card {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    width: 250px;
+    text-align: left;
+    transition: transform 0.3s;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+}
+
+img {
+    width: auto;  /* Keep the image’s natural width */
+    height: auto; /* Keep the image’s natural height */
+    max-width: 100%; /* Prevent overflow */
+    max-height: 400px; /* Ensure images don’t get too tall */
+    object-fit: contain; /* Show the whole image without cropping */
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+
+img:hover {
+    transform: scale(1.1);
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px;
+    background: #ff5733;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.back-link:hover {
+    background: #ff471a;
+    transform: scale(1.1);
+}
+
+/* Animation */
+.fade-in {
+    animation: fadeIn 2s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

@@ -32,7 +32,7 @@ A content-based Movie Recommendation System built using NLP and machine learning
 
 ### 🌍 Live Demo
 
-**Hosted on Render:** [Click here]([https://your-render-link.com](https://movie-recommendation-system-using-nlp-7.onrender.com))  
+**Hosted on Render:** [Click here](https://movie-recommendation-system-using-nlp-7.onrender.com)  
 _(Replace with actual link once deployed)_
 
 ---

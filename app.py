@@ -14,7 +14,7 @@ nltk.download('stopwords')
 app = Flask(__name__)
 
 # Load dataset
-df = pd.read_csv(r"C:\Users\Prathamesh\Downloads\Projects\Movie Recommendation System\movies rec\imdb_top_1000.csv")
+df = pd.read_csv("Dataset\imdb_top_1000.csv")
 
 # Combine actor columns
 df['actors'] = df[['Star1', 'Star2', 'Star3', 'Star4']].apply(lambda x: ', '.join(x.dropna()), axis=1)

@@ -68,4 +68,11 @@ Fields used:
 
 ---
 
+## 🤝 Contributing
+Feel free to **fork this repository, make enhancements, and submit a pull request!**
 
+## 📚 License
+This project is licensed under the **MIT License**.
+
+---
+Made with ❤️ by **Prathamesh Ugle**

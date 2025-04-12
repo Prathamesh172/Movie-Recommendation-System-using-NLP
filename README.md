@@ -1,20 +1,18 @@
-## Movie Recommendation System
+## 🧠 Sentiment Analysis Web App
 
-A content-based Movie Recommendation System built using NLP and machine learning techniques. Given a movie title, the system suggests 8 similar movies based on plot, genre, director, and lead actors.
+A minimalist, dark-themed Flask web application that predicts **sentiment** (Positive, Neutral, or Negative) of user-submitted product reviews using a trained **Logistic Regression** model.
 
 ---
 
 ### 🚀 Features
 
-- Accepts movie titles as user input
-- Recommends 8 similar movies using:
-  - Movie Overview
-  - Genre
-  - Top 4 actors
-- Text preprocessing with NLTK
-- TF-IDF vectorization & cosine similarity for recommendations
-- Deployed with Flask
-- Ready for hosting on Render
+- Accepts **product review** and **summary** as input
+- Combines review and summary for better context
+- Cleans & preprocesses text using regular expressions
+- TF-IDF vectorization + Logistic Regression classifier
+- Emoji-based output: 😊 😐 😠
+- Simple, responsive UI
+- Dockerized for deployment on **Hugging Face Spaces**
 
 ---
 
@@ -22,57 +20,121 @@ A content-based Movie Recommendation System built using NLP and machine learning
 
 - Python 🐍
 - Flask 🌐
-- NLTK (Natural Language Toolkit)
-- Pandas & NumPy
 - Scikit-learn
-- TF-IDF + Cosine Similarity
-- HTML & CSS (for UI)
+- NLTK (for preprocessing)
+- TF-IDF Vectorization
+- Logistic Regression
+- HTML/CSS (custom styling)
 
 ---
 
-### 🌍 Live Demo
+### 🌍 Demo
 
-**Hosted on Render:** [Click here](https://movie-recommendation-system-using-nlp-7.onrender.com)  
-_(Replace with actual link once deployed)_
+**Live on Hugging Face Spaces:** [Click here](https://huggingface.co/spaces/your-username/sentiment-app)
+
+---
+
+### 📁 Project Structure
+
+```
+sentiment-app/
+│
+├── app.py                  # Flask application
+├── Dockerfile              # Docker setup
+├── requirements.txt        # Python dependencies
+├── sentiment_model.pkl     # Trained sentiment classifier
+├── tfidf_vectorizer.pkl    # TF-IDF vectorizer
+├── nltk_downloads.py       # (Optional) for Hugging Face NLTK compatibility
+│
+├── templates/
+│   ├── index.html          # Landing page
+│   └── predict.html        # Prediction form + result
+│
+└── README.md
+```
+
+---
+
+### 🧠 Model Overview
+
+The classifier is a **multi-class Logistic Regression model** trained on labeled product reviews.
+
+Steps:
+1. Clean review and summary text
+2. Combine them for richer context
+3. Vectorize using **TF-IDF**
+4. Predict using **Logistic Regression**
+
+Prediction Labels:
+- `0` → Negative
+- `1` → Neutral
+- `2` → Positive
+
+---
+
+### 📦 Setup Instructions
+
+#### 🔧 Local Run
+
+1. Clone the repository
+```bash
+git clone https://github.com/your-username/sentiment-app.git
+cd sentiment-app
+```
+
+2. Create virtual environment (optional)
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+3. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+4. Run the app
+```bash
+python app.py
+```
+
+#### 🐳 Docker (for Hugging Face or local containers)
+
+```bash
+docker build -t sentiment-app .
+docker run -p 7860:7860 sentiment-app
+```
 
 ---
 
 ### 📊 Dataset
 
-- Dataset: `imdb_top_1000.csv`
-- Source: Kaggle / IMDb Top 1000 Movies Dataset
+*Describe the dataset here — include source, number of records, preprocessing done, etc.*
 
-Fields used:
-- Series_Title, Overview, Genre, Director, Star1, Star2, Star3, Star4
-
----
-
-### 💡 How It Works
-
-1. **Input**: User enters a movie title
-2. **Text Preprocessing**: Clean overview, genre, director, and actors
-3. **Feature Engineering**: Combine all into one text string
-4. **TF-IDF Vectorization**: Convert text into numeric vectors
-5. **Cosine Similarity**: Find movies most similar to the input
-6. **Output**: Top 8 recommendations displayed on the results page
+> Example:
+> The dataset used to train the model consists of ~25,000 labeled Amazon product reviews. Each review is labeled as Positive, Neutral, or Negative based on its overall tone. Text was cleaned using regex, lowercasing, and token filtering. Summary and main review body were concatenated before vectorization.
 
 ---
 
-### 🙌 Acknowledgements
+### ✨ Aesthetic Highlights
 
-- IMDb for the data
-- NLTK for powerful NLP tools
-- Scikit-learn for machine learning magic
-- Flask for lightweight deployment
-- Render for easy hosting
+- Dark, modern interface
+- Smooth hover transitions for buttons and cards
+- Responsive layout
+- Emoji-based result display for quick emotional grasp
+
+---
+
+### 📬 Contact
+
+Built with ❤️ by Prathamesh
 
 ---
 
-## 🤝 Contributing
-Feel free to **fork this repository, make enhancements, and submit a pull request!**
+### 🧠 Future Improvements
 
-## 📚 License
-This project is licensed under the **MIT License**.
+- Add multilingual support (Hindi, Marathi, etc.)
+- Support for voice input & audio sentiment
+- Real-time dashboard for sentiment trends
 
 ---
-Made with ❤️ by **Prathamesh Ugle**

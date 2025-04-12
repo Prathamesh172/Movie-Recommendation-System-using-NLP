@@ -1,5 +1,3 @@
-It should be something like this:
-
 ## Movie Recommendation System
 
 A content-based Movie Recommendation System built using NLP and machine learning techniques. Given a movie title, the system suggests 8 similar movies based on plot, genre, director, and lead actors.
